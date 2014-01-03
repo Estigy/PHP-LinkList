@@ -1,0 +1,184 @@
+<h1>Link bearbeiten</h1>
+
+<?php echo $this->partial('_partials/messages.phtml', array('flashMessenger' => $this->flashMessenger)); ?>
+
+<form action="<?=$this->url(array('id' => $this->item->id), 'admin_linklist_edit')?>" method="post" class="form form-horizontal" role="form">
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="form-group">
+				<label class="col-sm-4 control-label">ID</label>
+				<div class="col-sm-8">
+					<p class="form-control-static"><?php echo $this->item->id?></p>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="form-group">
+				<label class="col-sm-4 control-label">Aktivierungs-Mail</label>
+				<div class="col-sm-8">
+					<?php
+					if ($this->item->status == Model_LinkItem::STATUS_ONLINE) {
+						if (false && $this->item->date_activationmail) {
+							echo '<p class="form-control-static">' . $this->item->date_activationmail . '</p>';
+						} else {
+							echo '<button type="button" id="sendActivationMail" class="btn btn-info"><span class="glyphicon glyphicon-envelope"></span> Mail senden</button>';
+						}
+					} else {
+						echo '<p class="form-control-static">Link ist nicht Online</p>';
+					}
+					?>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Titel</label>
+		<div class="col-sm-8">
+			<input type="text" name="title" class="form-control" value="<?php echo $this->item->title?>" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Slug</label>
+		<div class="col-sm-8">
+			<input type="text" name="slug" class="form-control" value="<?php echo $this->item->slug?>" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">URL</label>
+		<div class="col-sm-8">
+			<input type="text" name="url" class="form-control" value="<?php echo $this->item->url?>" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Kategorie</label>
+		<div class="col-sm-8"><?php
+			echo $this->categorySelect('category_id', array(
+				'selected' => $this->item->category_id,
+				 'class' => 'form-control',
+			)); ?>
+		</div>
+	</div>		
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Status</label>
+		<div class="col-sm-8">
+			<?php
+			echo $this->linkitemStatusSelect('status', array(
+				'selected' => $this->item->status,
+				'class' => 'form-control',
+			));
+			?>
+		</div>
+	</div>
+	
+	
+	<h3>Beschreibung</h3>
+	
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Beschreibung</label>
+		<div class="col-sm-8">
+			<textarea name="description" class="form-control" rows="4"><?php echo $this->item->description; ?></textarea>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Keywords</label>
+		<div class="col-sm-8">
+			<textarea name="keywords" class="form-control" rows="4"><?php echo $this->item->keywords; ?></textarea>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Screenshot</label>
+		<div class="col-sm-8">
+			<p class="form-control-static">/* BILD */</p>
+		</div>
+	</div>
+	
+	<h3>Kontakt</h3>
+	
+	<div class="row">
+		<!-- Left Column -->
+		<fieldset class="col-sm-6">
+			<legend>Daten laut Impressum</legend>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">Name<span class="mandatory">*</span></label>
+				<div class="col-sm-8">
+					<input type="text" name="contact_name" class="form-control" value="<?php echo $this->item->contact_name?>" />
+					<span class="help-block">(Firmenname, Verein)</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">Adresse<span class="mandatory">*</span></label>
+				<div class="col-sm-8">
+					<input type="text" name="contact_address" class="form-control" value="<?php echo $this->item->contact_address?>" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">PLZ, Ort<span class="mandatory">*</span></label>
+				<div class="col-sm-2">
+					<input type="text" name="contact_zip" class="form-control" value="<?php echo $this->item->contact_zip?>" />
+				</div>
+				<div class="col-sm-6">
+					<input type="text" name="contact_city" class="form-control" value="<?php echo $this->item->contact_city?>" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">Land<span class="mandatory">*</span></label>
+				<div class="col-sm-8">
+					<input type="text" name="contact_country" class="form-control" value="<?php echo $this->item->contact_country?>" />
+				</div>
+			</div>			
+			<div class="form-group">
+				<label class="col-sm-4 control-label">Telefon</label>
+				<div class="col-sm-8">
+					<input type="text" name="contact_phone" class="form-control" value="<?php echo $this->item->contact_phone?>" />
+				</div>
+			</div>
+		</fieldset>
+
+		<!-- Right Column -->
+		<fieldset class="col-sm-6">
+			<legend>Ansprechpartner</legend>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">Ansprechpartner<span class="mandatory">*</span></label>
+				<div class="col-sm-8">
+					<input type="text" name="contact_person" class="form-control" value="<?php echo $this->item->contact_person?>" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">E-Mail<span class="mandatory">*</span></label>
+				<div class="col-sm-8">
+					<input type="text" name="contact_email" class="form-control" value="<?php echo $this->item->contact_email?>" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-8 col-sm-offset-4">
+					<div class="checkbox">
+						<label><input type="checkbox" name="contact_forward" id="contact_forward" value="1" <?php if ($this->item->contact_forward) echo 'checked="checked"'; ?> /> Anfragen weiterleiten</label>
+					</div>
+				</div>
+			</div>
+		</fieldset>
+	</div>
+	<div class="form-group">
+		<div class="col-md-6 col-md-offset-2">
+			<input type="submit" class="btn btn-primary btn-lg" value="Speichern" />
+		</div>
+	</div>
+</form>
+
+<script>
+$(function() {
+	$('#sendActivationMail').click(function() {
+		$.post(
+			'<?php echo $this->url(array(), 'admin_linklist_sendactivationmail'); ?>',
+			{id: '<?php echo $this->item->id; ?>'},
+			function(response) {
+				if (response != 'OK') {
+					alert(response);
+				} else {
+					$('#sendActivationMail').replaceWith('<p class="form-control-static"><?php echo date('Y-m-d H:i:s'); ?></p>');
+				}
+			}
+		);
+	});
+});
+</script>

@@ -1,0 +1,26 @@
+<h3 class="tabname">Details</h3>
+
+<h1><?php echo $this->linkitem->title ?></h1>
+
+<p><?php echo nl2br($this->escape($this->linkitem->description)) ?></p>
+
+<p><a href="<?php echo $this->escape($this->linkitem->url) ?>" target="_blank"><?php echo $this->escape($this->linkitem->url) ?></a></p>
+
+<div class="row">
+	<div class="col-md-6">
+		<p><strong>Keywords:</strong> <?php echo $this->escape($this->linkitem->keywords) ?></p>
+	</div>
+	<div class="col-md-5 pull-right well well-sm">
+		<table class="table table-condensed" style="margin-bottom:0;">
+			<thead>
+				<tr><th colspan="2">Statistik</th></tr>
+			</thead>
+			<tr>
+				<td>Eingetragen:</td><td class="text-right"><?php echo $this->formatDate($this->linkitem->date_entry); ?></td>
+			</tr>
+			<tr>
+				<td>Anzahl Views:</td><td class="text-right"><?php echo $this->linkitem->getViews(); ?></td>
+			</tr>
+		</table>
+	</div>
+</div>

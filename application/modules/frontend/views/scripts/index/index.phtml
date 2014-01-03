@@ -1,0 +1,8 @@
+<h3 class="tabname">Kategorien</h3>
+
+<?php foreach ($this->categories as $cat) { ?>
+	<h2 class="cat-title"><a href="<?php echo $this->categoryUrl($cat)?>"><?php echo $cat->title ?> &raquo;</a></h2>
+	<p class="cat-subtitle"><?php echo $cat->subtitle ?></p>
+<?php } ?>
+
+<div><?php echo $this->showAd('textblock') ?></div>

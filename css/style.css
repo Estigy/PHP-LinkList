@@ -1,0 +1,126 @@
+/**
+ * Block-Definitionen
+ */
+
+#wrapper {
+	margin:0 auto;
+}
+#header {
+	height:190px;
+	position:relative;
+	background:#ddf;
+}
+#main {
+	margin-top:25px;
+	position:relative;
+}
+#tool-line {
+	padding: 25px 0 5px 0;
+	text-align:right;
+}
+#subline {
+	height:31px;
+	background:#ddf;
+}
+
+/**
+ * Base Fonts
+ */
+
+.leftbar h2, .rightbar h2 { font-size:18px; }
+.leftbar h3, .rightbar h3 { font-size:15px; }
+.contentbar h1 { font-size:30px; }
+.contentbar h2 { font-size:25px; }
+.contentbar h3 { font-size:18px; }
+.leftbar .tabname, .contentbar .tabname, .rightbar .tabname { font-size:14px; }
+
+/**
+ * Header
+ */
+#topline, #navi {
+	position:relative;
+	background-color:rgba(255,255,255,0.8);
+}
+#topline {
+	top:2px;
+	height:36px;
+}
+#topline-left {
+	position:absolute;
+	left:15px;
+	top:5px;
+}
+#topline-right {
+	position:absolute;
+	right:15px;
+	top:3px;
+}
+#logo {
+	font-size:18px;
+	font-weight:bold;
+	margin-right:25px;
+}
+#navi {
+	top:125px;
+	height:27px;
+	padding:3px 15px;
+	margin:0;
+}
+#navi li {
+	margin-right:30px;
+}
+#navi li a {
+	font-weight:bold;
+}
+#navi li.active a {
+	text-decoration:underline;
+}
+
+
+/**
+ * Footer
+ */
+#subline p {
+	position:relative;
+	top:2px;
+	height:27px;
+	background-color:rgba(255,255,255,0.8);
+	padding:4px 15px;
+}
+
+/**
+ * Contentbar
+ */
+
+input.charcount {
+	width:33px;
+}
+ul.errors {
+	font-size:11px;
+	line-height:13px;
+	color:red;
+	padding:4px 0;
+}
+ul.errors li {
+	list-style-type:none;
+	margin:0;
+}
+
+/**
+ * Paginator
+ */
+.paginator {
+	margin-top:18px;
+}
+.paginator li {
+	float: left;
+    padding:0 4px;
+    margin-left:0;
+    list-style-type:none;
+}
+.paginator .resultinfo {
+	margin-right:18px;
+	color:#999;
+	font-size:11px;
+	padding-top:1px;
+}

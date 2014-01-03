@@ -1,0 +1,27 @@
+<ul class="pagination">
+	<li class="resultinfo">
+		<span><?php echo $this->firstItemNumber; ?> &ndash; <?php echo $this->lastItemNumber; ?> von <?php echo $this->totalItemCount; ?></span>
+	</li>
+	
+	<?php if ($this->pageCount != 1) { ?>
+		<li <?php echo isset($this->previous) ? '' : 'class="disabled"'; ?>>
+			<a href="<?php echo isset($this->previous) ? $this->paginatorOptions['path'] . '?pageIndex=' . $this->first : '#'; ?>"><span class="glyphicon glyphicon-fast-backward"></span></a>
+		</li>
+		
+		<li <?php echo isset($this->previous) ? '' : 'class="disabled"'; ?>>
+			<a href="<?php echo isset($this->previous) ? $this->paginatorOptions['path'] . '?pageIndex=' . $this->previous : '#'; ?>"><span class="glyphicon glyphicon-chevron-left"></span></a>
+		</li>
+
+		<?php foreach ($this->pagesInRange as $page) { ?>
+			<li <?php echo $page == $this->current ? 'class="active"' : ''; ?>><a href="<?php echo $this->paginatorOptions['path'] . '?pageIndex=' . $page; ?>"><?php echo $page; ?></a></li>
+		<?php } ?>
+
+		<li <?php echo isset($this->next) ? '' : 'class="disabled"'; ?>>
+			<a href="<?php echo isset($this->next) ? $this->paginatorOptions['path'] . '?pageIndex=' . $this->next : '#'; ?>"><span class="glyphicon glyphicon-chevron-right"></span></a>
+		</li>
+		
+		<li <?php echo isset($this->next) ? '' : 'class="disabled"'; ?>>
+			<a href="<?php echo isset($this->last) ? $this->paginatorOptions['path'] . '?pageIndex=' . $this->last : '#'; ?>"><span class="glyphicon glyphicon-fast-forward"></span></a>
+		</li>
+	<?php }	?>
+</ul>

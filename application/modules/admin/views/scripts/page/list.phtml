@@ -1,0 +1,23 @@
+<h1>
+	Pages
+	<a href="<?=$this->url(array('id' => 0), 'admin_page_edit')?>" class="btn btn-default pull-right"><span class=""></span>New Page</a>
+</h1>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Titel</th>
+			<th>Status</th>
+		</tr>
+		</thead>
+	<tbody>
+	<?php foreach ($this->pages as $page) { ?>
+		<tr>
+			<td><?php echo $page['node']->id?></td>
+			<td><a href="<?php echo $this->url(array('id' => $page['node']->id), 'admin_page_edit'); ?>" style="margin-left:<?php echo 20 * $page['level']; ?>px"><?php echo $page['node']->title; ?></a></td>
+			<td><span class="<?php echo $page['node']->status; ?>"><?php echo $page['node']->status; ?></span></td>
+		</tr>
+	<?php } ?>
+	</tbody>
+</table>

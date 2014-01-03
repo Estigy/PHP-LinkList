@@ -1,0 +1,19 @@
+<h3 class="tabname">Suchergebnis</h3>
+<h1>Suche nach "<?php echo $this->escape($this->searchterm); ?>"</h1>
+
+<ul class="list-unstyled">
+<?php
+foreach ($this->linkItems as $link) {
+	echo $this->partial('_partials/linklist-entry.phtml', array('linkItem' => $link));
+}
+?>
+</ul>
+
+<div><?php echo $this->showAd('textblock') ?></div>
+
+<div>
+	<?php echo $this->paginationControl($this->paginator, 
+										'Sliding',
+										'_partials/pagination.phtml', 
+										array('paginatorOptions' => $this->paginatorOptions)); ?>
+</div>

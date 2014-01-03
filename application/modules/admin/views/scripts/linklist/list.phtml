@@ -1,0 +1,67 @@
+<h1>
+	Links
+	<a href="<?=$this->url(array('id' => 0), 'admin_linklist_edit')?>" class="btn btn-default pull-right"><span class=""></span>Neuer Link</a>
+</h1>
+
+
+<form action="" method="post" class="form-horizontal well" role="form">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="form-group">
+				<label for="filter-status" class="col-md-2 control-label">Status</label>
+				<div class="col-md-10"><?php
+				echo $this->linkitemStatusSelect('filter[status]', array(
+					'selected' => isset($this->exp['status']) ? $this->exp['status'] : null,
+					'id'    => 'filter-status',
+					'class' => 'form-control',
+				));
+				?>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="filter-title" class="col-md-2 control-label">Titel</label>
+				<div class="col-md-10"><input type="text" name="filter[title]" class="form-control" value="<?php echo isset($this->exp['title']) ? $this->escape($this->exp['title']) : '';?>" /></div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group">
+				<label for="filter-id" class="col-md-2 control-label">ID</label>
+				<div class="col-md-4"><input type="text" name="filter[id]" class="form-control" value="<?php echo isset($this->exp['id']) ? $this->escape($this->exp['id']) : '';?>" /></div>
+			</div>
+			<div class="form-group">
+				<label for="filter-category" class="col-md-2 control-label">Kategorie</label>
+				<div class="col-md-10"><?php
+					echo $this->categorySelect('filter[category_id]', array(
+						'selected' => isset($this->exp['category_id']) ? $this->exp['category_id'] : 0,
+						'class' => 'form-control',
+						'id' => 'filter-category',
+					));
+					?></div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="form-group">
+				<label for="filter-contact" class="col-md-2 control-label">Kontakt</label>
+				<div class="col-md-10"><input type="text" name="filter[contact_name]" class="form-control" value="<?php echo isset($this->exp['contact_name']) ? $this->escape($this->exp['contact_name']) : '';?>" /></div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-7">
+			<div class=""><input type="submit" class="btn btn-primary" value="Search" /></div>
+		</div>
+	</div>
+</form>
+
+<h2>List</h2>
+
+<?=$this->partial('_partials/simpleLinkList.phtml', array('items' => $this->items))?>
+
+<?php echo $this->paginationControl($this->paginator, 
+									'Sliding',
+									'_partials/pagination.phtml', 
+									array('paginatorOptions' => $this->paginatorOptions)); ?>
+
+

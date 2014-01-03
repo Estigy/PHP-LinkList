@@ -1,0 +1,65 @@
+<h1>Willkommen im Backend</h1>
+
+<div class="row">
+
+	<div class="col-md-4">
+		<h3>Links</h3>
+		<table class="table">
+			<tr>
+				<td>Neu</td>
+				<td><?php echo $this->countLinksNew; ?></td>
+			</tr>
+			<tr>
+				<td>Online</td>
+				<td><?php echo $this->countLinksOnline; ?></td>
+			</tr>
+			<tr>
+				<td>Banned</td>
+				<td><?php echo $this->countLinksBanned; ?></td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="col-md-4">
+		<h3>Kategorien</h3>
+		<table class="table">
+			<tr>
+				<td>Online</td>
+				<td><?php echo $this->countCategoriesOnline; ?></td>
+			</tr>
+			<tr>
+				<td>Offline</td>
+				<td><?php echo $this->countCategoriesOffline; ?></td>
+			</tr>
+		</table>
+	</div>
+
+</div>
+
+<div class="row">
+	<div class="col-md-8">
+		<h3>Top Links</h3>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Rank</th>
+					<th>Title</th>
+					<th>Views</th>
+					<th>Category</th>
+				</tr>
+			</thead>
+			<?php
+			foreach ($this->linksByViews as $index => $link) {
+				?>
+				<tr>
+					<td class="text-right"><?php echo $index + 1; ?></td>
+					<td><?php echo $this->escape($link->title); ?></td>
+					<td class="text-right"><?php echo $link->getViews(); ?></td>
+					<td><?php echo $link->getCategory()->title; ?></td>
+				</tr>
+				<?php 
+			}
+			?>
+		</table>
+	</div>
+</div>

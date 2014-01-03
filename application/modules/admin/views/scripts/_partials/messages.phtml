@@ -1,0 +1,24 @@
+<?php
+if ($this->flashMessenger->hasMessages('error')) { ?>
+	<div class="alert alert-danger">
+		<?php foreach ($this->flashMessenger->getMessages('error') as $m) { ?>
+			<p>
+				<span class="glyphicon glyphicon-remove"></span>
+				<?php echo $m; ?>
+			</p>
+		<?php } ?>
+	</div>
+<?php
+}
+
+if ($this->flashMessenger->hasMessages()) { ?>
+	<div class="alert alert-success">
+		<?php foreach ($this->flashMessenger->getMessages() as $m) { ?>
+			<p>
+				<span class="glyphicon glyphicon-ok"></span>
+				<?php echo $m; ?>
+			</p>
+		<?php } ?>
+	</div>
+	<?php
+}

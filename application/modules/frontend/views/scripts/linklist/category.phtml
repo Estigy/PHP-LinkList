@@ -1,0 +1,28 @@
+<h3 class="tabname">Kategorie</h3>
+
+<h1><?php echo $this->category->title ?></h1>
+<p><?php echo $this->category->subtitle ?></p>
+
+<?php if ($this->categories) {?>
+
+<?php } ?>
+
+
+<h2>Eingetragene Links</h2>
+
+<ul class="list-unstyled">
+<?php
+foreach ($this->linkItems as $link) {
+	echo $this->partial('_partials/linklist-entry.phtml', array('linkItem' => $link));
+}
+?>
+</ul>
+
+<div><?php echo $this->showAd('textblock') ?></div>
+
+<div>
+	<?php echo $this->paginationControl($this->paginator, 
+										'Sliding',
+										'_partials/pagination.phtml', 
+										array('paginatorOptions' => $this->paginatorOptions)); ?>
+</div>

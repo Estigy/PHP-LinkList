@@ -1,0 +1,28 @@
+<?php
+	if ($this->flashMessenger->hasMessages('error')) { ?>
+	<div class="ui-widget">
+		<div class="ui-state-error ui-corner-all" style="margin-bottom:18px; padding:0 9px;">
+			<?php foreach ($this->flashMessenger->getMessages('error') as $m) { ?>
+				<p>
+					<span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
+					<?php echo $m; ?>
+				</p>
+				<?php } ?>
+		</div>
+	</div>
+	<?php
+	}
+
+	if ($this->flashMessenger->hasMessages()) { ?>
+	<div class="ui-widget">
+		<div class="ui-state-highlight ui-corner-all" style="margin-bottom:18px; padding:0 9px;">
+			<?php foreach ($this->flashMessenger->getMessages() as $m) { ?>
+				<p>
+					<span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
+					<?php echo $m; ?>
+				</p>
+				<?php } ?>
+		</div>
+	</div>
+	<?php
+	}

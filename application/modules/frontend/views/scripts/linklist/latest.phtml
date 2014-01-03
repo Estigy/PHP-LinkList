@@ -1,0 +1,12 @@
+<h3 class="tabname">Infos</h3>
+
+<h1>Neueste Links</h1>
+<p>Hier finden Sie die neuesten Eintragungen.</p>
+
+<ul class="list-unstyled">
+<?php
+foreach ($this->linkItems as $link) {
+	echo $this->partial('_partials/linklist-entry.phtml', array('linkItem' => $link));
+}
+?>
+</ul>

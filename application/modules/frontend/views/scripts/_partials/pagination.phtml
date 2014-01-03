@@ -1,0 +1,36 @@
+<?php
+
+if ($this->pageCount == 0) {
+	return;
+}
+
+$defaultRouteParams = isset($this->paginatorOptions['routeParams']) && is_array($this->paginatorOptions['routeParams']) ? $this->paginatorOptions['routeParams'] : array();
+?>
+
+<ul class="pagination">
+	<li class="resultinfo">
+		<span><?php echo $this->firstItemNumber; ?> &ndash; <?php echo $this->lastItemNumber; ?> von <?php echo $this->totalItemCount; ?></span>
+	</li>
+	
+	<?php if ($this->pageCount > 1) { ?>
+		<li <?php echo isset($this->previous) ? '' : 'class="disabled"'; ?>>
+			<a href="<?php echo isset($this->previous) ? $this->url(array('pageIndex' => $this->first) + $defaultRouteParams, $this->paginatorOptions['routeName']) : '#'; ?>"><span class="glyphicon glyphicon-fast-backward"></span></a>
+		</li>
+		
+		<li <?php echo isset($this->previous) ? '' : 'class="disabled"'; ?>>
+			<a href="<?php echo isset($this->previous) ? $this->url(array('pageIndex' => $this->previous) + $defaultRouteParams, $this->paginatorOptions['routeName']) : '#'; ?>"><span class="glyphicon glyphicon-chevron-left"></span></a>
+		</li>
+
+		<?php foreach ($this->pagesInRange as $page) { ?>
+			<li <?php echo $page == $this->current ? 'class="active"' : ''; ?>><a href="<?php echo $this->url(array('pageIndex' => $page) + $defaultRouteParams, $this->paginatorOptions['routeName']); ?>"><?php echo $page; ?></a></li>
+		<?php } ?>
+
+		<li <?php echo isset($this->next) ? '' : 'class="disabled"'; ?>>
+			<a href="<?php echo isset($this->next) ? $this->url(array('pageIndex' => $this->next) + $defaultRouteParams, $this->paginatorOptions['routeName']) : '#'; ?>"><span class="glyphicon glyphicon-chevron-right"></span></a>
+		</li>
+		
+		<li <?php echo isset($this->next) ? '' : 'class="disabled"'; ?>>
+			<a href="<?php echo isset($this->last) ? $this->url(array('pageIndex' => $this->last) + $defaultRouteParams, $this->paginatorOptions['routeName']) : '#'; ?>"><span class="glyphicon glyphicon-fast-forward"></span></a>
+		</li>
+	<?php }	?>
+</ul>

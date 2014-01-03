@@ -1,0 +1,17 @@
+<?php if ($this->error) { ?>
+	<div class="alert alert-danger">
+		<p><span class="glyphicon glyphicon-remove"></span>Login nicht möglich. Bitte versuchen Sie es erneut.</p>
+	</div>
+<?php } ?>
+
+<h1><?php echo $this->translate->_('Login'); ?></h1>
+
+<form action="<?=$this->url(array(), 'login')?>" method="post" class="form-horizontal" role="form">
+	<?php echo $this->formRow($this->form->username, 3, 5); ?>
+	<?php echo $this->formRow($this->form->password, 3, 5); ?>
+	<div class="form-group">
+		<div class="col-sm-offset-3 col-sm-5">
+			<input type="submit" class="btn btn-primary" value="<?=$this->translate->_('Login'); ?>" />
+		</div>
+	</div>
+</form>

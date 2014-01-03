@@ -1,0 +1,71 @@
+<h3 class="tabname">Seite anmelden</h3>
+<h1>Link eintragen</h1>
+
+<form action="<?=$this->url(array(), 'linklist_new')?>" method="post" role="form" class="form-horizontal">
+
+	<?php echo $this->formRow($this->form->title, 3, 9); ?>
+	<?php echo $this->formRow($this->form->url, 3, 9); ?>
+	<?php echo $this->formRow($this->form->category_id, 3, 6); ?>
+
+	<h2>Beschreibung</h2>
+	
+	<?php echo $this->formRow($this->form->description, 3, 9, array('helpText' => 'Beschreiben Sie in ganzen Sätzen die angebotenen Inhalte Ihrer Website. Halten Sie die Beschreibung möglichst neutral und informativ &ndash; bitte keine allzu reißerischen Marketing-Texte.<br />
+			Verwenden Sie ruhig auch Absätze, um den Text zu gliedern und in lesbare Einheiten zu unterteilen.<br />
+			Je mehr Text, umso besser.')); ?>
+	<?php echo $this->formRow($this->form->keywords, 3, 9, array('helpText' => 'Unterteilen Sie die Keywords mit Beistrichen (Komma). Bitte verwenden Sie nicht nur Kleinschreibung.')); ?>
+	
+	<div class="row">
+		<!-- Left Column -->
+		<div class="col-sm-6">
+
+			<h2>Daten laut Impressum</h2>
+			
+			<?php echo $this->formRow($this->form->contact_name, 3, 9, array('helpText' => '(Firmenname, Verein)')); ?>
+			<?php echo $this->formRow($this->form->contact_address, 3, 9); ?>
+			<div class="form-group">
+				<label class="col-sm-3 control-label"><?php echo $this->form->contact_city->getLabel(); ?>, <?php echo $this->form->contact_zip->getLabel(); ?><span class="mandatory">*</span></label>
+				<div class="col-sm-3">
+					<?php echo $this->form->contact_zip; ?>
+				</div>
+				<div class="col-sm-6">
+					<?php echo $this->form->contact_city; ?>
+				</div>
+			</div>
+			<?php echo $this->formRow($this->form->contact_country, 3, 9); ?>
+			<?php echo $this->formRow($this->form->contact_phone, 3, 9); ?>
+		</div>
+
+		<!-- Right Column -->
+		<div class="col-sm-6">
+		
+			<h2>Ansprechpartner</h2>
+			
+			<?php echo $this->formRow($this->form->contact_person, 3, 9); ?>
+			<?php echo $this->formRow($this->form->contact_email, 3, 9, array('helpText' => 'Ansprechpartner und E-Mail-Adresse werden nicht publiziert, sondern dienen nur unserer Kommunikation mit Ihnen.')); ?>
+			
+			<div class="form-group">
+				<div class="col-sm-offset-3 col-sm-9">
+					<div class="checkbox">
+						<label for="contact_forward">
+							<?php echo $this->form->contact_forward; ?> <?php echo $this->form->contact_forward->getLabel(); ?>
+						</label>
+					</div>
+					<p class="help-block">Wir bekommen immer wieder Anfragen zu den eingetragenen Links. Wenn Sie diese Checkbox anhaken, leiten wir diese Anfragen an die angegeben Adresse weiter.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-offset-3 col-sm-9">
+			<input type="submit" name="submit" class="btn btn-primary" value="Link eintragen" />
+		</div>
+	</div>
+</form>
+
+<script>
+$(function(){
+	limitInput('textarea[name="description"]', <?php echo $this->config->minLengthDescription; ?>, 'min');
+	limitInput('textarea[name="keywords"]', <?php echo $this->config->maxLengthKeywords; ?>, 'max');
+});
+</script>

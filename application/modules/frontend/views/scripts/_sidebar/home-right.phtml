@@ -1,0 +1,12 @@
+<h3 class="tabname">Aktuell / Neu</h3>
+
+<h2>Neue Einträge</h2>
+<p>Folgende Links durften wir vor kurzem für Sie freischalten:</p>
+
+<ul class="list-unstyled" style="margin-bottom:20px;">
+	<?php foreach ($this->latestLinkitems as $linkitem) { ?>
+	<li><a href="<?php echo $this->linkUrl($linkitem)?>"><?php echo $linkitem->title ?></a></li>
+	<?php } ?>
+</ul>
+
+<div><?php echo $this->showAd('skyscraper') ?></div>

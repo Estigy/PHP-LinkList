@@ -1,0 +1,87 @@
+<?php
+$sidebarLeft  = $this->render($this->sidebarLeft->getView());
+$sidebarRight = $this->render($this->sidebarRight->getView());
+echo $this->doctype();
+?>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<?php
+echo $this->headLink();
+
+echo $this->headScript();
+?>
+
+<title><?php echo Core_Service_Meta::getFromRegistry()->getTitle(); ?></title>
+<meta name="keywords" value="<?php echo $this->escape(Core_Service_Meta::getFromRegistry()->getKeywords()); ?>" />
+<meta name="description" value="<?php echo $this->escape(Core_Service_Meta::getFromRegistry()->getDescription()); ?>" />
+</head>
+
+<body>
+	<div class="container" id="wrapper">
+		<div id="header">
+			<div id="topline">
+				<div id="topline-left">
+					<a id="logo" href="<?php echo $this->url(array(), 'index'); ?>"><?php echo $this->config->projectName; ?></a>
+					<span class="top-slogan"><?php echo $this->config->headerClaim; ?></span>
+				</div>
+				<div id="topline-right">
+					<form action="<?php echo $this->url(array(), 'linklist_search'); ?>" method="get" class="form-inline" role="form">
+						<div class="form-group">
+							<label class="sr-only" for="headerFormSearchterm">Suchbegriff</label>
+							<input type="text" name="searchterm" class="form-control input-sm" id="headerFormSearchterm" placeholder="Suche...">
+						</div>
+						<input type="submit" class="btn btn-default input-sm" value="Los" />
+					</form>
+				</div>
+			</div>
+			<ul id="navi" class="list-unstyled list-inline">
+				<li <?php if ($this->activeMenuItem == 'home')        { echo 'class="active"'; }?>><a href="<?php echo $this->url(array(), 'index'); ?>">Home</a></li>
+				<li <?php if ($this->activeMenuItem == 'newlink')     { echo 'class="active"'; }?>><a href="<?php echo $this->url(array('category_id' => $this->category ? $this->category->id : '0'), 'linklist_new'); ?>">Link eintragen</a></li>
+				<li <?php if ($this->activeMenuItem == 'latestlinks') { echo 'class="active"'; }?>><a href="<?php echo $this->url(array(), 'linklist_latest');?>">Neueste Links</a></li>
+				<li <?php if ($this->activeMenuItem == 'contact')     { echo 'class="active"'; }?>><a href="<?php echo $this->url(array(), 'contact');?>">Kontakt</a></li>
+				
+				<?php if ($this->isAllowed('index', 'dashboard', 'admin')) : ?>
+				<li <?php if ($this->activeMenuItem == 'backend')     { echo 'class="active"'; }?>><a href="<?php echo $this->url(array(), 'dashboard_index'); ?>">Backend</a></li>
+				<?php endif; ?>
+			</ul>
+		</div>
+		
+		<div class="row main">
+			<div class="col-md-3 leftbar">
+				<?php echo $sidebarLeft; ?>
+			</div>
+			<?php if ($this->fullContent): ?>
+				<div class="col-md-9 contentbar">
+					<?php echo $this->layout()->content ?>
+				</div>	
+			<?php else: ?>
+				<div class="col-md-6 contentbar">
+					<?php echo $this->layout()->content ?>
+				</div>	
+				<div class="col-md-3 rightbar">
+					<?php echo $sidebarRight; ?>
+				</div>
+			<?php endif; ?>			
+		</div>
+		
+		<div id="footer">
+			<div id="tool-line">
+				<?php if (Zend_Auth::getInstance()->hasIdentity()) : ?>
+					<?php echo $this->translate->_('Logged in as:')?> <?php echo Zend_Auth::getInstance()->getIdentity()->firstname ?> (<?php echo Zend_Auth::getInstance()->getIdentity()->role ?>)
+					<span class="nav-fx">▪</span>
+					<a href="<?php echo $this->url(array(), 'logout')?>">Logout</a>
+					<?php else: ?>
+					<a href="<?php echo $this->url(array(), 'login'); ?>">Login</a>
+				<?php endif; ?>
+				<span class="nav-fx">▪</span>
+				<a class="imprint" href="<?php echo $this->url(array('slug' => 'impressum'), 'page');?>">Impressum</a>
+			</div>
+			<div id="subline">
+				<p><?php echo $this->config->footerClaim; ?></p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

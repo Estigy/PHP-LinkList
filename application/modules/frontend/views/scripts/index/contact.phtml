@@ -1,0 +1,16 @@
+<h3 class="tabname">Kontakt</h3>
+<h1>Schreiben Sie uns</h1>
+
+<?php echo $this->partial('_partials/messages.phtml', array('flashMessenger' => $this->flashMessenger)); ?>
+
+<form action="<?=$this->url(array(), 'contact')?>" method="post" class="form-horizontal" role="form">
+	<?php echo $this->formRow($this->form->subject, 3, 9); ?>
+	<?php echo $this->formRow($this->form->message, 3, 9); ?>
+	<?php echo $this->formRow($this->form->name, 3, 6); ?>
+	<?php echo $this->formRow($this->form->email, 3, 6); ?>
+	<div class="form-group">
+		<div class="col-sm-offset-3 col-sm-5">
+			<input type="submit" class="btn btn-primary" name="submit" value="Abschicken" />
+		</div>
+	</div>
+</form>

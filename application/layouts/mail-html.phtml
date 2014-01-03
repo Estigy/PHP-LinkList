@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<style>
+			body, html, table, td, th, div, p {
+				color: #333333;
+				font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+				font-size: 14px;
+				line-height: 1.42857;
+			}
+			h1 {
+				color: #8AA239;
+				font-size:30px;
+				margin:20px 0 10px 0;
+			}
+			p {
+				margin: 0 0 10px;
+			}
+			a {
+				color:#A94863;
+			}
+			hr {
+				margin-top: 20px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<table width="680" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+				
+					<?php echo $this->layout()->content; ?>
+
+					<hr>
+					
+					<p><a href="<?php echo Core_Config::getConfig()->project->url; ?>"><?php echo $this->layout()->config->project->name; ?></a></p>
+					
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

@@ -1,0 +1,58 @@
+<?php
+echo $this->doctype();
+?>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<?php
+echo $this->headLink();
+
+echo $this->headScript();
+?>
+
+<title><?php echo Core_Service_Meta::getFromRegistry()->getTitle(); ?></title>
+<meta name="keywords" value="<?php echo $this->escape(Core_Service_Meta::getFromRegistry()->getKeywords()); ?>" />
+<meta name="description" value="<?php echo $this->escape(Core_Service_Meta::getFromRegistry()->getDescription()); ?>" />
+</head>
+
+<body>
+
+<nav class="navbar navbar-default" role="navigation">
+	<!-- Brand and toggle get grouped for better mobile display -->
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#admin-nav-bar">
+			<span class="sr-only">Navigation ein-/ausblenden</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="#"><?php echo $this->config->projectName; ?></a>
+	</div>
+
+	<!-- Collect the nav links, forms, and other content for toggling -->
+	<div class="collapse navbar-collapse" id="admin-nav-bar">
+		<ul class="nav navbar-nav">
+			<li><a href="<?php echo $this->url(array(), 'index')?>"><span class="glyphicon glyphicon-home"></span> Frontend</a></li>
+			<li><a class="active" href="<?php echo $this->url(array(), 'dashboard_index')?>"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
+			<li><a href="<?php echo $this->url(array('q' => ''), 'admin_linklist_list')?>"><span class="glyphicon glyphicon-link"></span> Links</a></li>
+			<li><a href="<?php echo $this->url(array('q' => ''), 'admin_page_list')?>"><span class="glyphicon glyphicon-file"></span> Pages</a></li>
+			<li><a href="<?php echo $this->url(array('q' => ''), 'admin_user_list')?>"><span class="glyphicon glyphicon-user"></span> Users</a></li>
+			<li><a href="<?php echo $this->url(array(), 'admin_category_list')?>"><span class="glyphicon glyphicon-tasks"></span> Categories</a></li>
+			<li><a href="#"><span class="glyphicon glyphicon-stats"></span> Stats</a></li>
+		</ul>
+		<ul class="nav navbar-nav">
+			<li>
+				<p class="navbar-text"><?php echo $this->translate->_('Logged in as:')?> <?php echo Zend_Auth::getInstance()->getIdentity()->firstname ?> (<?php echo Zend_Auth::getInstance()->getIdentity()->role ?>)</p>
+			</li>
+			<li><button class="btn btn-danger navbar-btn" onclick="window.location='<?php echo $this->url(array(), 'logout')?>';"><span class="glyphicon glyphicon-log-out"></span> Logout</button></li>
+		</ul>
+	</div><!-- /.navbar-collapse -->
+</nav>
+
+<div class="container">
+<?php echo $this->layout()->content ?>
+</div>
+		
+</body>
+</html>

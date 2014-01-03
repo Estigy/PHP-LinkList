@@ -1,0 +1,65 @@
+<h1>Edit Page</h1>
+
+<?php echo $this->partial('_partials/messages.phtml', array('flashMessenger' => $this->flashMessenger)); ?>
+
+<form action="<?=$this->url(array('id' => $this->page->id), 'admin_page_edit')?>" method="post" class="form form-horizontal" role="form">
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Titel</label>
+		<div class="col-sm-6">
+			<input type="text" name="title" class="form-control" value="<?php echo $this->page->title?>" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">URL slug</label>
+		<div class="col-sm-1 form-control-static">/pages/</div>
+		<div class="col-sm-5">
+			<input type="text" name="slug" class="form-control" value="<?php echo $this->page->slug?>" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Status</label>
+		<div class="col-sm-4">
+			<?php
+			echo $this->pageStatusSelect('status', array(
+				'selected' => $this->page->status,
+				'class' => 'form-control'
+			));
+			?>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Parent page</label>
+		<div class="col-sm-4">
+			<?php
+			echo $this->pageSelect('parent_id', array(
+				'selected' => $this->page->parent_id,
+				'class' => 'form-control'
+			));
+			?>
+		</div>
+	</div>		
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Text</label>
+		<div class="col-sm-8">
+			<?php echo $this->inputWysiwyg('text', $this->page->text, 'text', array('class' => 'form-control')); ?>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Description</label>
+		<div class="col-sm-8">
+			<textarea name="description" class="form-control"><?php echo $this->page->description; ?></textarea>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Keywords</label>
+		<div class="col-sm-8">
+			<textarea name="keywords" class="form-control"><?php echo $this->page->keywords; ?></textarea>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<div class="col-md-6 col-md-offset-2">
+			<input type="submit" class="btn btn-primary btn-lg" value="Speichern" />
+		</div>
+	</div>
+</form>
