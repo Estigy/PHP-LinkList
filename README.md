@@ -21,4 +21,4 @@ Dadurch sollte sich die Einarbeitungszeit in engen Grenzen halten.
 
 Im File `localConfig.php` können die wichtigsten Parameter (Zugangsdaten, E-Mail-Adressen, projektspezifische Texte) leicht bearbeitet werden.
 
-Das Einbinden eigener CSS-Files ist dort ebenfalls vorgesehen.
+Das Einbinden eigener CSS-Files ist dort ebenfalls vorgesehen. Auch die IDs für die Werbung sind dort gespeichert.
