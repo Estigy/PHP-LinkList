@@ -30,8 +30,6 @@ class Core_Controller_Plugin_I18n extends Zend_Controller_Plugin_Abstract
 		
 		$locale = new Zend_Locale($translate->getLocale());
 		Zend_Registry::set('Zend_Locale', $locale);
-		
-		Core_Model_Query_MultiLang::setQueryLang($locale->toString());
 	}
 	
 	public function preDispatch(Zend_Controller_Request_Abstract $request)
