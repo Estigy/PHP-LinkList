@@ -60,7 +60,7 @@ class Model_Query_Category extends Core_Model_Query
 		return $tree;
 	}
 	
-	protected function getSubTree($motherId, $level, $treeType, $status)
+	protected static function getSubTree($motherId, $level, $treeType, $status)
 	{
 		$nodes = self::getSubCategories($motherId, $status);
 		if (!count($nodes)) {

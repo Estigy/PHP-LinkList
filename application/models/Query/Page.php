@@ -45,7 +45,7 @@ class Model_Query_Page extends Core_Model_Query
 		return $tree;
 	}
 	
-	protected function _getSubTree($parentId, $level, $treeType)
+	protected static function _getSubTree($parentId, $level, $treeType)
 	{
 		$nodes = self::find(0, PHP_INT_MAX, array('parent_id' => $parentId));
 		if (!count($nodes)) {
